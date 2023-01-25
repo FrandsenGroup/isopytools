@@ -19,7 +19,4 @@
 import isotools.iso2diffpy
 import isotools.fitutils
 
-# convenience imports
-#from diffpy.mpdf.magstructure import *
-
 # End of file

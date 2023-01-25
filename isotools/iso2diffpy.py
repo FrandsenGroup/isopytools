@@ -6,7 +6,7 @@
 #                     (c) 2022 Benjamin Allen Frandsen
 #                     All rights reserved
 #
-# File coded by:    Benjamin Frandsen and Parker Hamilton
+# File coded by:    Parker Hamilton and Benjamin Frandsen
 #
 # See AUTHORS.txt for a list of people who contributed.
 # See LICENSE.txt for license information.

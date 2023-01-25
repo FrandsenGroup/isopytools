@@ -1,11 +1,10 @@
 #!/usr/bin/env python
 ##############################################################################
 #
-# isotools       by Billinge Group
-#                     Simon J. L. Billinge sb2896@columbia.edu
-#                     (c) 2016 trustees of Columbia University in the City of
-#                           New York.
-#                      All rights reserved
+# isotools            by Frandsen Group
+#                     Benjamin A. Frandsen benfrandsen@byu.edu
+#                     (c) 2022 Benjamin Allen Frandsen
+#                     All rights reserved
 #
 # File coded by:    Benjamin Frandsen
 #
@@ -32,7 +31,7 @@ def testsuite():
     '''
     import unittest
     modulenames = '''
-        isotools.tests.testtest
+        isotools.tests.tests
     '''.split()
     suite = unittest.TestSuite()
     loader = unittest.defaultTestLoader
