@@ -172,23 +172,39 @@ def build_struc(iso):
 class IsoInfo:
     """Container for structural information contained in ISODISTORT output file.
 
-    This class takes a *.str TOPAS-format output file from ISODISTORT,
+    This class takes a TOPAS-format output file from ISODISTORT,
     extracts the structural/symmetry information, and prepares it for use by
     other DiffPy-based functions.
     
     Args:
         filename (string): name of the .str ISODISTORT file.
+    
+    Attributes:
+        abcdegabg: 6-tuple containing a, b, c, alpha, beta, gamma (angles in deg)
+        abcradabg: 6-tuple containing a, b, c, alpha, beta, gamma (angles in rad)
+        modedefs: dictionary pairing mode labels with group-theoretical
+            definitions.
+        modepars: dictionary pairing mode labels with mode amplitudes.
+        deltas: dictionary pairing mode labels with fractional changes in position
+            as a function of mode amplitudes.
+        positions: dictionary pairing atomic coordinate labels with their values.
+        spacegroup: string giving the spacegroup symbol of the child structure.
+        
     """
     def __init__(self, filename):
         from math import radians
-        with open(filename) as fp:
-            lines = fp.readlines()
+        fp = open(filename, 'r')
+        lines = fp.readlines()
+        fp.close()
+        #with open(filename) as fp:
+        #    lines = fp.readlines()
         self.abcdegabg = self._parse_abcabg(lines)
         radabg = tuple(radians(x) for x in self.abcdegabg[3:])
         self.abcradabg = self.abcdegabg[:3] + radabg
         self.modepars = self._parse_modepars(lines)
         self.deltas = self._parse_deltas(lines)
         self.positions = self._parse_positions(lines)
+        self.modedefs = self._parse_modedefs(lines)
         # find spacegroup
         sgline = next((i for i, line in enumerate(lines)
                        if 'space_group' in line))
@@ -207,13 +223,30 @@ class IsoInfo:
 
     @staticmethod
     def _parse_modepars(lines):
-        """Parse the 'mode definitions' block.
+        """Parse the 'mode definitions' block to get parameter values.
         """
         mx = re.compile(fr'^\s*prm *!?(a\d+) +({_pf})')
         words = (mx.search(s).groups() for s in lines if mx.search(s))
         rv = OrderedDict((n, float(v)) for n, v in words)
         return rv
 
+    @staticmethod
+    def _parse_modedefs(lines):
+        """Parse the 'mode definitions' block to get mode names.
+        """
+        modes_start = next((i for i, line in enumerate(lines) if 'mode definitions' in line))
+        for idx, line in enumerate(lines[modes_start:]):
+            if "'}}}" in line:
+                modes_end = modes_start + idx
+                break
+        chunk = lines[modes_start+1 : modes_end-1]
+        rv = OrderedDict()
+        for line in chunk:
+            segments = line.split()
+            label = segments[1][1:]
+            name = segments[-2][1:] + ' ' + segments[-1]
+            rv[label] = name
+        return rv    
 
     @staticmethod
     def _parse_deltas(lines):
