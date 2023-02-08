@@ -68,6 +68,7 @@ def get_shifts(iso):
 
 def get_positions(iso):
     """Get fractional positions of symmetry-unique atoms from mode amplitudes.
+    Also updates the iso.positions dictionary.
 
     Args:
         iso: instance of IsoInfo class.
@@ -84,6 +85,8 @@ def get_positions(iso):
         for pParam in pParams:
             equation = equation.replace(pParam,"shiftDict['"+pParam+"']")
         posDict[key] = eval(equation)
+        temp = iso.positions[key]
+        iso.positions[key] = (temp[0], posDict[key])
     return posDict
 
 def update_positions(strucObj, iso):
@@ -189,6 +192,7 @@ class IsoInfo:
             as a function of mode amplitudes.
         positions: dictionary pairing atomic coordinate labels with their values.
         spacegroup: string giving the spacegroup symbol of the child structure.
+        spacegroupnum: integer space group number
         
     """
     def __init__(self, filename):
@@ -209,6 +213,7 @@ class IsoInfo:
         sgline = next((i for i, line in enumerate(lines)
                        if 'space_group' in line))
         self.spacegroup = lines[sgline - 1].strip().strip("'\"")
+        self.spacegroupnum = int(lines[sgline].strip().split()[1])
         return
 
     @staticmethod
