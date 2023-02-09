@@ -1,0 +1,817 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.9.2" />
+<title>isotools.iso2diffpy API documentation</title>
+<meta name="description" content="Tools for adapting ISODISTORT outputs to DiffPy." />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>isotools.iso2diffpy</code></h1>
+</header>
+<section id="section-intro">
+<p>Tools for adapting ISODISTORT outputs to DiffPy.</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">#!/usr/bin/env python
+##############################################################################
+#
+# isotools            by Frandsen Group
+#                     Benjamin A. Frandsen benfrandsen@byu.edu
+#                     (c) 2022 Benjamin Allen Frandsen
+#                     All rights reserved
+#
+# File coded by:    Parker Hamilton and Benjamin Frandsen
+#
+# See AUTHORS.txt for a list of people who contributed.
+# See LICENSE.txt for license information.
+#
+##############################################################################
+
+&#34;&#34;&#34;Tools for adapting ISODISTORT outputs to DiffPy.
+&#34;&#34;&#34;
+
+import re
+import itertools
+from collections import OrderedDict
+import diffpy.structure as dps
+import diffpy.structure.symmetryutilities as su
+import diffpy.structure.spacegroups as sg
+import numpy as np
+
+_pf = r&#39;[+-]?\d[^; \n\t]*&#39;
+
+def get_xyz(atomName,iso):
+    &#34;&#34;&#34;Extract the xyz position of a given atom from mode amplitudes.
+
+    Args:
+        atomName (string): label of the atom for which the coordinates are
+            desired.
+        iso: instance of IsoInfo class.
+
+    Returns: tuple with the x, y, and z fractional coordinates.
+    &#34;&#34;&#34;
+    return tuple(iso.positions[atomName+&#39;_&#39;+c][1] for c in &#39;xyz&#39;)
+
+def get_shifts(iso):
+    &#34;&#34;&#34;Get fractional shifts of symmetry-unique atoms from mode amplitudes.
+
+    Args:
+        iso: instance of IsoInfo class.
+
+    Returns:
+        shiftDict: OrderedDict with fractional shifts of each atom.
+    &#34;&#34;&#34;
+    shiftDict = OrderedDict()
+    for key in iso.deltas.keys():
+        equation = iso.deltas[key][0]
+        pieces = equation.split()
+        signs = pieces[::2]
+        terms = pieces[1::2]
+        coefficients = []
+        modenums = []
+        for term in terms:
+            coefficient, modenum = term.split(&#39;*&#39;)
+            coefficients.append(coefficient)
+            modenums.append(modenum)
+        modenums2 = []
+        for modenum in modenums:
+            modenum2 = &#34;iso.modepars[&#39;&#34;+modenum+&#34;&#39;]&#34;
+            modenums2.append(modenum2)
+        newequation = &#39;&#39;
+        for idx, sign in enumerate(signs):
+            newequation += sign+coefficients[idx]+&#39;*&#39;+modenums2[idx]
+        shiftDict[key] = eval(newequation)
+    return shiftDict
+
+def get_positions(iso, returnDict=True):
+    &#34;&#34;&#34;Get fractional positions of symmetry-unique atoms from mode amplitudes.
+    Also updates the iso.positions dictionary.
+
+    Args:
+        iso: instance of IsoInfo class.
+        returnDict: If True, this function returns a dictionary with a separate
+            key for each component of each atom. If False, two items are
+            returned: a list containing the labels of each unique site, and an
+            array with the positions of each atom.
+            
+
+    Returns:
+        if returnDict:
+        posDict: OrderedDict with positions of each atom
+        if not returnDict:
+        names: List of the labels of each atom
+        coords: numpy array of the coordinates of each atom (same order as names)
+    &#34;&#34;&#34;
+    if returnDict:
+        posDict = OrderedDict()
+        shiftDict = get_shifts(iso)
+        for key in iso.positions.keys():
+            equation = iso.positions[key][0]
+            k = key[:-1]+&#39;d&#39;+key[-1]
+            pParams = re.findall(k,equation)
+            for pParam in pParams:
+                equation = equation.replace(pParam,&#34;shiftDict[&#39;&#34;+pParam+&#34;&#39;]&#34;)
+            posDict[key] = eval(equation)
+            temp = iso.positions[key]
+            iso.positions[key] = (temp[0], posDict[key])
+        return posDict
+    else:
+        coords = []
+        names = []
+        for idx, key in enumerate(iso.positions):
+            coords.append(iso.positions[key][1])
+            if idx % 3 == 0:
+                names.append(key[:-2])
+        coords = np.array(coords)
+        coords = np.reshape(coords, (len(names), 3))
+        return names, coords
+
+def update_positions(strucObj, iso):
+    &#34;&#34;&#34;Update fractional positions of diffpy structure object from mode amps.
+
+    Args:
+        strucObj: the diffpy structure object to be updated.
+        iso: instance of IsoInfo class.
+
+    Returns: Nothing. Just updates the strucObj.
+    &#34;&#34;&#34;
+    posDict = get_positions(iso)
+    for idx, key in enumerate(posDict.keys()):
+        k = key[:-2]
+        XYZ = key[-1]
+        string = &#39;strucObj[&#39;+str(idx//3)+&#39;].&#39;+ XYZ +&#39; = posDict[key]&#39;
+        exec(string)
+
+def set_amps(iso, ampArray):
+    &#34;&#34;&#34;Set the symmetry mode amplitudes to desired values.
+
+    Args:
+        iso: instance of IsoInfo class that will be updated with desired amps
+        ampArray: array or list of amplitudes, in the same order as
+            iso.modepars.
+
+    Returns: Nothing. Just updates iso.
+    &#34;&#34;&#34;
+    for idx, key in enumerate(iso.modepars.keys()):
+        iso.modepars[key] = ampArray[idx]
+
+def get_amps(iso):
+    &#34;&#34;&#34;Get the symmetry mode amplitudes from current iso instance.
+
+    Args:
+        iso: instance of IsoInfo class from which amplitudes will be extracted.
+        ampArray: array or list of amplitudes, in the same order as
+            iso.modepars.
+
+    Returns: list containing the mode amplitudes.
+    &#34;&#34;&#34;
+    amps = []
+    for idx, key in enumerate(iso.modepars.keys()):
+        amps.append(iso.modepars[key])
+    return amps
+
+def build_struc(iso):
+    &#34;&#34;&#34;Create a PDFfitStructure instance from the IsoInfo instance.
+    
+    Args:
+        iso: instance of IsoInfo class to be converted to a diffpy structure.
+
+    Returns:
+        struc: diffpy structure object corresponding to info in IsoInfo.
+    &#34;&#34;&#34;
+    # create lattice
+    a, b, c, alpha, beta, gamma = iso.abcdegabg 
+    lat = dps.Lattice(a, b, c, alpha, beta, gamma)
+    
+    sgobj = sg.GetSpaceGroup(iso.spacegroupnum) # space group object
+    
+    # create the atoms
+    atoms = []
+    for key in list(iso.positions.keys())[::3]: # grab every third entry because x, y, z are listed for each atom
+        letters = re.findall(r&#34;[a-zA-Z]&#34;,key)
+        elem = &#39;&#39;.join(letters[:-1])
+        expanded_pos = su.expandPosition(sgobj, get_xyz(key[:-2],iso))[0]
+        for pos in expanded_pos:
+            atoms.append(dps.Atom(atype=elem, xyz=pos, anisotropy=True))
+
+    struc = dps.Structure(atoms=atoms)
+    struc.lattice = lat
+    return struc
+
+class IsoInfo:
+    &#34;&#34;&#34;Container for structural information contained in ISODISTORT output file.
+
+    This class takes a TOPAS-format output file from ISODISTORT,
+    extracts the structural/symmetry information, and prepares it for use by
+    other DiffPy-based functions.
+    
+    Args:
+        filename (string): name of the .str ISODISTORT file.
+    
+    Attributes:
+        abcdegabg: 6-tuple containing a, b, c, alpha, beta, gamma (angles in deg)
+        abcradabg: 6-tuple containing a, b, c, alpha, beta, gamma (angles in rad)
+        modedefs: dictionary pairing mode labels with group-theoretical
+            definitions.
+        modepars: dictionary pairing mode labels with mode amplitudes.
+        deltas: dictionary pairing mode labels with fractional changes in position
+            as a function of mode amplitudes.
+        positions: dictionary pairing atomic coordinate labels with their values.
+        spacegroup: string giving the spacegroup symbol of the child structure.
+        spacegroupnum: integer space group number
+        
+    &#34;&#34;&#34;
+    def __init__(self, filename):
+        from math import radians
+        fp = open(filename, &#39;r&#39;)
+        lines = fp.readlines()
+        fp.close()
+        #with open(filename) as fp:
+        #    lines = fp.readlines()
+        self.abcdegabg = self._parse_abcabg(lines)
+        radabg = tuple(radians(x) for x in self.abcdegabg[3:])
+        self.abcradabg = self.abcdegabg[:3] + radabg
+        self.modepars = self._parse_modepars(lines)
+        self.deltas = self._parse_deltas(lines)
+        self.positions = self._parse_positions(lines)
+        self.modedefs = self._parse_modedefs(lines)
+        # find spacegroup
+        sgline = next((i for i, line in enumerate(lines)
+                       if &#39;space_group&#39; in line))
+        self.spacegroup = lines[sgline - 1].strip().strip(&#34;&#39;\&#34;&#34;)
+        self.spacegroupnum = int(lines[sgline].strip().split()[1])
+        return
+
+    @staticmethod
+    def _parse_abcabg(lines):
+        &#34;&#34;&#34;Extract lattice constants.
+        &#34;&#34;&#34;
+        mx = re.compile(fr&#39;^\s*([abc]|al|be|ga)\s+({_pf})&#39;)
+        words = (mx.search(s).group(2) for s in lines if mx.search(s))
+        rv = tuple(float(x) for x in itertools.islice(words, 6))
+        return rv
+
+
+    @staticmethod
+    def _parse_modepars(lines):
+        &#34;&#34;&#34;Parse the &#39;mode definitions&#39; block to get parameter values.
+        &#34;&#34;&#34;
+        mx = re.compile(fr&#39;^\s*prm *!?(a\d+) +({_pf})&#39;)
+        words = (mx.search(s).groups() for s in lines if mx.search(s))
+        rv = OrderedDict((n, float(v)) for n, v in words)
+        return rv
+
+    @staticmethod
+    def _parse_modedefs(lines):
+        &#34;&#34;&#34;Parse the &#39;mode definitions&#39; block to get mode names.
+        &#34;&#34;&#34;
+        modes_start = next((i for i, line in enumerate(lines) if &#39;mode definitions&#39; in line))
+        for idx, line in enumerate(lines[modes_start:]):
+            if &#34;&#39;}}}&#34; in line:
+                modes_end = modes_start + idx
+                break
+        chunk = lines[modes_start+1 : modes_end-1]
+        rv = OrderedDict()
+        for line in chunk:
+            segments = line.split()
+            label = segments[1][1:]
+            name = segments[-2][1:] + &#39; &#39; + segments[-1]
+            rv[label] = name
+        return rv    
+
+    @staticmethod
+    def _parse_deltas(lines):
+        &#34;&#34;&#34;
+        Parse the &#34;mode-amplitude to delta transformation&#34; block.
+        &#34;&#34;&#34;
+        mx = re.compile(fr&#39;^\s*prm *(\w+_d[xyz]) += +(\S[^;]*);: *({_pf})&#39;)
+        words = (mx.search(s).groups() for s in lines if mx.search(s))
+        rv = OrderedDict((w[0], (w[1], float(w[2]))) for w in words)
+        return rv
+
+
+    @staticmethod
+    def _parse_positions(lines):
+        &#34;&#34;&#34;Parse the &#39;distorted parameters&#39; block.
+        &#34;&#34;&#34;
+        mx = re.compile(fr&#39;^\s*prm *!?(\w+_[xyz]) += +(\S[^;]*);: *({_pf})&#39;)
+        words = (mx.search(s).groups() for s in lines if mx.search(s))
+        rv = OrderedDict((w[0], (w[1], float(w[2]))) for w in words)
+        return rv
+
+# end of class IsoInfo</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="isotools.iso2diffpy.build_struc"><code class="name flex">
+<span>def <span class="ident">build_struc</span></span>(<span>iso)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create a PDFfitStructure instance from the IsoInfo instance.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>iso</code></strong></dt>
+<dd>instance of IsoInfo class to be converted to a diffpy structure.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>struc</code></dt>
+<dd>diffpy structure object corresponding to info in IsoInfo.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def build_struc(iso):
+    &#34;&#34;&#34;Create a PDFfitStructure instance from the IsoInfo instance.
+    
+    Args:
+        iso: instance of IsoInfo class to be converted to a diffpy structure.
+
+    Returns:
+        struc: diffpy structure object corresponding to info in IsoInfo.
+    &#34;&#34;&#34;
+    # create lattice
+    a, b, c, alpha, beta, gamma = iso.abcdegabg 
+    lat = dps.Lattice(a, b, c, alpha, beta, gamma)
+    
+    sgobj = sg.GetSpaceGroup(iso.spacegroupnum) # space group object
+    
+    # create the atoms
+    atoms = []
+    for key in list(iso.positions.keys())[::3]: # grab every third entry because x, y, z are listed for each atom
+        letters = re.findall(r&#34;[a-zA-Z]&#34;,key)
+        elem = &#39;&#39;.join(letters[:-1])
+        expanded_pos = su.expandPosition(sgobj, get_xyz(key[:-2],iso))[0]
+        for pos in expanded_pos:
+            atoms.append(dps.Atom(atype=elem, xyz=pos, anisotropy=True))
+
+    struc = dps.Structure(atoms=atoms)
+    struc.lattice = lat
+    return struc</code></pre>
+</details>
+</dd>
+<dt id="isotools.iso2diffpy.get_amps"><code class="name flex">
+<span>def <span class="ident">get_amps</span></span>(<span>iso)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get the symmetry mode amplitudes from current iso instance.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>iso</code></strong></dt>
+<dd>instance of IsoInfo class from which amplitudes will be extracted.</dd>
+<dt><strong><code>ampArray</code></strong></dt>
+<dd>array or list of amplitudes, in the same order as
+iso.modepars.</dd>
+</dl>
+<p>Returns: list containing the mode amplitudes.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_amps(iso):
+    &#34;&#34;&#34;Get the symmetry mode amplitudes from current iso instance.
+
+    Args:
+        iso: instance of IsoInfo class from which amplitudes will be extracted.
+        ampArray: array or list of amplitudes, in the same order as
+            iso.modepars.
+
+    Returns: list containing the mode amplitudes.
+    &#34;&#34;&#34;
+    amps = []
+    for idx, key in enumerate(iso.modepars.keys()):
+        amps.append(iso.modepars[key])
+    return amps</code></pre>
+</details>
+</dd>
+<dt id="isotools.iso2diffpy.get_positions"><code class="name flex">
+<span>def <span class="ident">get_positions</span></span>(<span>iso, returnDict=True)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get fractional positions of symmetry-unique atoms from mode amplitudes.
+Also updates the iso.positions dictionary.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>iso</code></strong></dt>
+<dd>instance of IsoInfo class.</dd>
+<dt><strong><code>returnDict</code></strong></dt>
+<dd>If True, this function returns a dictionary with a separate
+key for each component of each atom. If False, two items are
+returned: a list containing the labels of each unique site, and an
+array with the positions of each atom.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt>if returnDict:</dt>
+<dt><code>posDict</code></dt>
+<dd>OrderedDict with positions of each atom</dd>
+<dt>if not returnDict:</dt>
+<dt><code>names</code></dt>
+<dd>List of the labels of each atom</dd>
+<dt><code>coords</code></dt>
+<dd>numpy array of the coordinates of each atom (same order as names)</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_positions(iso, returnDict=True):
+    &#34;&#34;&#34;Get fractional positions of symmetry-unique atoms from mode amplitudes.
+    Also updates the iso.positions dictionary.
+
+    Args:
+        iso: instance of IsoInfo class.
+        returnDict: If True, this function returns a dictionary with a separate
+            key for each component of each atom. If False, two items are
+            returned: a list containing the labels of each unique site, and an
+            array with the positions of each atom.
+            
+
+    Returns:
+        if returnDict:
+        posDict: OrderedDict with positions of each atom
+        if not returnDict:
+        names: List of the labels of each atom
+        coords: numpy array of the coordinates of each atom (same order as names)
+    &#34;&#34;&#34;
+    if returnDict:
+        posDict = OrderedDict()
+        shiftDict = get_shifts(iso)
+        for key in iso.positions.keys():
+            equation = iso.positions[key][0]
+            k = key[:-1]+&#39;d&#39;+key[-1]
+            pParams = re.findall(k,equation)
+            for pParam in pParams:
+                equation = equation.replace(pParam,&#34;shiftDict[&#39;&#34;+pParam+&#34;&#39;]&#34;)
+            posDict[key] = eval(equation)
+            temp = iso.positions[key]
+            iso.positions[key] = (temp[0], posDict[key])
+        return posDict
+    else:
+        coords = []
+        names = []
+        for idx, key in enumerate(iso.positions):
+            coords.append(iso.positions[key][1])
+            if idx % 3 == 0:
+                names.append(key[:-2])
+        coords = np.array(coords)
+        coords = np.reshape(coords, (len(names), 3))
+        return names, coords</code></pre>
+</details>
+</dd>
+<dt id="isotools.iso2diffpy.get_shifts"><code class="name flex">
+<span>def <span class="ident">get_shifts</span></span>(<span>iso)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get fractional shifts of symmetry-unique atoms from mode amplitudes.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>iso</code></strong></dt>
+<dd>instance of IsoInfo class.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>shiftDict</code></dt>
+<dd>OrderedDict with fractional shifts of each atom.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_shifts(iso):
+    &#34;&#34;&#34;Get fractional shifts of symmetry-unique atoms from mode amplitudes.
+
+    Args:
+        iso: instance of IsoInfo class.
+
+    Returns:
+        shiftDict: OrderedDict with fractional shifts of each atom.
+    &#34;&#34;&#34;
+    shiftDict = OrderedDict()
+    for key in iso.deltas.keys():
+        equation = iso.deltas[key][0]
+        pieces = equation.split()
+        signs = pieces[::2]
+        terms = pieces[1::2]
+        coefficients = []
+        modenums = []
+        for term in terms:
+            coefficient, modenum = term.split(&#39;*&#39;)
+            coefficients.append(coefficient)
+            modenums.append(modenum)
+        modenums2 = []
+        for modenum in modenums:
+            modenum2 = &#34;iso.modepars[&#39;&#34;+modenum+&#34;&#39;]&#34;
+            modenums2.append(modenum2)
+        newequation = &#39;&#39;
+        for idx, sign in enumerate(signs):
+            newequation += sign+coefficients[idx]+&#39;*&#39;+modenums2[idx]
+        shiftDict[key] = eval(newequation)
+    return shiftDict</code></pre>
+</details>
+</dd>
+<dt id="isotools.iso2diffpy.get_xyz"><code class="name flex">
+<span>def <span class="ident">get_xyz</span></span>(<span>atomName, iso)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Extract the xyz position of a given atom from mode amplitudes.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>atomName</code></strong> :&ensp;<code>string</code></dt>
+<dd>label of the atom for which the coordinates are
+desired.</dd>
+<dt><strong><code>iso</code></strong></dt>
+<dd>instance of IsoInfo class.</dd>
+</dl>
+<p>Returns: tuple with the x, y, and z fractional coordinates.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_xyz(atomName,iso):
+    &#34;&#34;&#34;Extract the xyz position of a given atom from mode amplitudes.
+
+    Args:
+        atomName (string): label of the atom for which the coordinates are
+            desired.
+        iso: instance of IsoInfo class.
+
+    Returns: tuple with the x, y, and z fractional coordinates.
+    &#34;&#34;&#34;
+    return tuple(iso.positions[atomName+&#39;_&#39;+c][1] for c in &#39;xyz&#39;)</code></pre>
+</details>
+</dd>
+<dt id="isotools.iso2diffpy.set_amps"><code class="name flex">
+<span>def <span class="ident">set_amps</span></span>(<span>iso, ampArray)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Set the symmetry mode amplitudes to desired values.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>iso</code></strong></dt>
+<dd>instance of IsoInfo class that will be updated with desired amps</dd>
+<dt><strong><code>ampArray</code></strong></dt>
+<dd>array or list of amplitudes, in the same order as
+iso.modepars.</dd>
+</dl>
+<p>Returns: Nothing. Just updates iso.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_amps(iso, ampArray):
+    &#34;&#34;&#34;Set the symmetry mode amplitudes to desired values.
+
+    Args:
+        iso: instance of IsoInfo class that will be updated with desired amps
+        ampArray: array or list of amplitudes, in the same order as
+            iso.modepars.
+
+    Returns: Nothing. Just updates iso.
+    &#34;&#34;&#34;
+    for idx, key in enumerate(iso.modepars.keys()):
+        iso.modepars[key] = ampArray[idx]</code></pre>
+</details>
+</dd>
+<dt id="isotools.iso2diffpy.update_positions"><code class="name flex">
+<span>def <span class="ident">update_positions</span></span>(<span>strucObj, iso)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Update fractional positions of diffpy structure object from mode amps.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>strucObj</code></strong></dt>
+<dd>the diffpy structure object to be updated.</dd>
+<dt><strong><code>iso</code></strong></dt>
+<dd>instance of IsoInfo class.</dd>
+</dl>
+<p>Returns: Nothing. Just updates the strucObj.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def update_positions(strucObj, iso):
+    &#34;&#34;&#34;Update fractional positions of diffpy structure object from mode amps.
+
+    Args:
+        strucObj: the diffpy structure object to be updated.
+        iso: instance of IsoInfo class.
+
+    Returns: Nothing. Just updates the strucObj.
+    &#34;&#34;&#34;
+    posDict = get_positions(iso)
+    for idx, key in enumerate(posDict.keys()):
+        k = key[:-2]
+        XYZ = key[-1]
+        string = &#39;strucObj[&#39;+str(idx//3)+&#39;].&#39;+ XYZ +&#39; = posDict[key]&#39;
+        exec(string)</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="isotools.iso2diffpy.IsoInfo"><code class="flex name class">
+<span>class <span class="ident">IsoInfo</span></span>
+<span>(</span><span>filename)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Container for structural information contained in ISODISTORT output file.</p>
+<p>This class takes a TOPAS-format output file from ISODISTORT,
+extracts the structural/symmetry information, and prepares it for use by
+other DiffPy-based functions.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>filename</code></strong> :&ensp;<code>string</code></dt>
+<dd>name of the .str ISODISTORT file.</dd>
+</dl>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>abcdegabg</code></strong></dt>
+<dd>6-tuple containing a, b, c, alpha, beta, gamma (angles in deg)</dd>
+<dt><strong><code>abcradabg</code></strong></dt>
+<dd>6-tuple containing a, b, c, alpha, beta, gamma (angles in rad)</dd>
+<dt><strong><code>modedefs</code></strong></dt>
+<dd>dictionary pairing mode labels with group-theoretical
+definitions.</dd>
+<dt><strong><code>modepars</code></strong></dt>
+<dd>dictionary pairing mode labels with mode amplitudes.</dd>
+<dt><strong><code>deltas</code></strong></dt>
+<dd>dictionary pairing mode labels with fractional changes in position
+as a function of mode amplitudes.</dd>
+<dt><strong><code>positions</code></strong></dt>
+<dd>dictionary pairing atomic coordinate labels with their values.</dd>
+<dt><strong><code>spacegroup</code></strong></dt>
+<dd>string giving the spacegroup symbol of the child structure.</dd>
+<dt><strong><code>spacegroupnum</code></strong></dt>
+<dd>integer space group number</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class IsoInfo:
+    &#34;&#34;&#34;Container for structural information contained in ISODISTORT output file.
+
+    This class takes a TOPAS-format output file from ISODISTORT,
+    extracts the structural/symmetry information, and prepares it for use by
+    other DiffPy-based functions.
+    
+    Args:
+        filename (string): name of the .str ISODISTORT file.
+    
+    Attributes:
+        abcdegabg: 6-tuple containing a, b, c, alpha, beta, gamma (angles in deg)
+        abcradabg: 6-tuple containing a, b, c, alpha, beta, gamma (angles in rad)
+        modedefs: dictionary pairing mode labels with group-theoretical
+            definitions.
+        modepars: dictionary pairing mode labels with mode amplitudes.
+        deltas: dictionary pairing mode labels with fractional changes in position
+            as a function of mode amplitudes.
+        positions: dictionary pairing atomic coordinate labels with their values.
+        spacegroup: string giving the spacegroup symbol of the child structure.
+        spacegroupnum: integer space group number
+        
+    &#34;&#34;&#34;
+    def __init__(self, filename):
+        from math import radians
+        fp = open(filename, &#39;r&#39;)
+        lines = fp.readlines()
+        fp.close()
+        #with open(filename) as fp:
+        #    lines = fp.readlines()
+        self.abcdegabg = self._parse_abcabg(lines)
+        radabg = tuple(radians(x) for x in self.abcdegabg[3:])
+        self.abcradabg = self.abcdegabg[:3] + radabg
+        self.modepars = self._parse_modepars(lines)
+        self.deltas = self._parse_deltas(lines)
+        self.positions = self._parse_positions(lines)
+        self.modedefs = self._parse_modedefs(lines)
+        # find spacegroup
+        sgline = next((i for i, line in enumerate(lines)
+                       if &#39;space_group&#39; in line))
+        self.spacegroup = lines[sgline - 1].strip().strip(&#34;&#39;\&#34;&#34;)
+        self.spacegroupnum = int(lines[sgline].strip().split()[1])
+        return
+
+    @staticmethod
+    def _parse_abcabg(lines):
+        &#34;&#34;&#34;Extract lattice constants.
+        &#34;&#34;&#34;
+        mx = re.compile(fr&#39;^\s*([abc]|al|be|ga)\s+({_pf})&#39;)
+        words = (mx.search(s).group(2) for s in lines if mx.search(s))
+        rv = tuple(float(x) for x in itertools.islice(words, 6))
+        return rv
+
+
+    @staticmethod
+    def _parse_modepars(lines):
+        &#34;&#34;&#34;Parse the &#39;mode definitions&#39; block to get parameter values.
+        &#34;&#34;&#34;
+        mx = re.compile(fr&#39;^\s*prm *!?(a\d+) +({_pf})&#39;)
+        words = (mx.search(s).groups() for s in lines if mx.search(s))
+        rv = OrderedDict((n, float(v)) for n, v in words)
+        return rv
+
+    @staticmethod
+    def _parse_modedefs(lines):
+        &#34;&#34;&#34;Parse the &#39;mode definitions&#39; block to get mode names.
+        &#34;&#34;&#34;
+        modes_start = next((i for i, line in enumerate(lines) if &#39;mode definitions&#39; in line))
+        for idx, line in enumerate(lines[modes_start:]):
+            if &#34;&#39;}}}&#34; in line:
+                modes_end = modes_start + idx
+                break
+        chunk = lines[modes_start+1 : modes_end-1]
+        rv = OrderedDict()
+        for line in chunk:
+            segments = line.split()
+            label = segments[1][1:]
+            name = segments[-2][1:] + &#39; &#39; + segments[-1]
+            rv[label] = name
+        return rv    
+
+    @staticmethod
+    def _parse_deltas(lines):
+        &#34;&#34;&#34;
+        Parse the &#34;mode-amplitude to delta transformation&#34; block.
+        &#34;&#34;&#34;
+        mx = re.compile(fr&#39;^\s*prm *(\w+_d[xyz]) += +(\S[^;]*);: *({_pf})&#39;)
+        words = (mx.search(s).groups() for s in lines if mx.search(s))
+        rv = OrderedDict((w[0], (w[1], float(w[2]))) for w in words)
+        return rv
+
+
+    @staticmethod
+    def _parse_positions(lines):
+        &#34;&#34;&#34;Parse the &#39;distorted parameters&#39; block.
+        &#34;&#34;&#34;
+        mx = re.compile(fr&#39;^\s*prm *!?(\w+_[xyz]) += +(\S[^;]*);: *({_pf})&#39;)
+        words = (mx.search(s).groups() for s in lines if mx.search(s))
+        rv = OrderedDict((w[0], (w[1], float(w[2]))) for w in words)
+        return rv</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="isotools" href="index.html">isotools</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="two-column">
+<li><code><a title="isotools.iso2diffpy.build_struc" href="#isotools.iso2diffpy.build_struc">build_struc</a></code></li>
+<li><code><a title="isotools.iso2diffpy.get_amps" href="#isotools.iso2diffpy.get_amps">get_amps</a></code></li>
+<li><code><a title="isotools.iso2diffpy.get_positions" href="#isotools.iso2diffpy.get_positions">get_positions</a></code></li>
+<li><code><a title="isotools.iso2diffpy.get_shifts" href="#isotools.iso2diffpy.get_shifts">get_shifts</a></code></li>
+<li><code><a title="isotools.iso2diffpy.get_xyz" href="#isotools.iso2diffpy.get_xyz">get_xyz</a></code></li>
+<li><code><a title="isotools.iso2diffpy.set_amps" href="#isotools.iso2diffpy.set_amps">set_amps</a></code></li>
+<li><code><a title="isotools.iso2diffpy.update_positions" href="#isotools.iso2diffpy.update_positions">update_positions</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="isotools.iso2diffpy.IsoInfo" href="#isotools.iso2diffpy.IsoInfo">IsoInfo</a></code></h4>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
+</footer>
+</body>
+</html>
