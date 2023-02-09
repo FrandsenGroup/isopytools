@@ -9,7 +9,7 @@ This package provides tools to convert ISODISTORT output into a format compatibl
 
 Recommended: DiffPy-CMI library (https://www.diffpy.org/products/diffpycmi/index.html)
 
-Minimum requirements: diffpy.srfit, diffpy.structure, pyobjcryst
+Minimum requirements: sympy, diffpy.srfit, diffpy.structure, pyobjcryst
 
 ## Installation
 
