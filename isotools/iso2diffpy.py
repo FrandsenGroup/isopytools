@@ -128,22 +128,7 @@ def update_positions(strucObj, iso):
         string = 'strucObj['+str(idx//3)+'].'+ XYZ +' = posDict[key]'
         exec(string)
 
-def update_positions_pyobjcryst(crystObj, iso):
-    """Update fractional positions of pyobjcryst Crystal from mode amps.
-
-    Args:
-        crystObj: the pyobjcryst Crystal instance to be updated.
-        iso: instance of IsoInfo class.
-
-    Returns: Nothing. Just updates the strucObj.
-    """
-    posDict = get_positions(iso)
-    for key in posDict.keys():
-        k = key[:-2]
-        XYZ = key[-1].capitalize()
-        eval('crystObj.GetScatterer(k).Set'+ XYZ +'(posDict[key])')
-
-def set_amps(iso,ampArray):
+def set_amps(iso, ampArray):
     """Set the symmetry mode amplitudes to desired values.
 
     Args:

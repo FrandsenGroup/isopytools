@@ -42,6 +42,16 @@ def setvars(fitnode, state):
     return
 
 def generate_constraints(iso):
+    """Generate general expressions for the position of each atom.
+    
+    Args:
+        iso: IsoInfo instance from iso2diffpy
+       
+    Returns:
+        Dictionary with coordinates of each atom expressed in terms of the
+        deltas (which can in turn be expressed in terms of the mode
+        amplitudes).
+    """
     names, coords = get_positions(iso, returnDict=False)
     sgobj = sg.GetSpaceGroup(iso.spacegroupnum)
     alltransformations = []
