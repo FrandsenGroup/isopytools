@@ -20,6 +20,9 @@ import re
 import itertools
 from collections import OrderedDict
 import diffpy.structure as dps
+import diffpy.structure.symmetryutilities as su
+import diffpy.structure.spacegroups as sg
+import numpy as np
 
 _pf = r'[+-]?\d[^; \n\t]*'
 
@@ -66,28 +69,48 @@ def get_shifts(iso):
         shiftDict[key] = eval(newequation)
     return shiftDict
 
-def get_positions(iso):
+def get_positions(iso, returnDict=True):
     """Get fractional positions of symmetry-unique atoms from mode amplitudes.
     Also updates the iso.positions dictionary.
 
     Args:
         iso: instance of IsoInfo class.
+        returnDict: If True, this function returns a dictionary with a separate
+            key for each component of each atom. If False, two items are
+            returned: a list containing the labels of each unique site, and an
+            array with the positions of each atom.
+            
 
     Returns:
-        posDict: OrderedDict with positions of each atom.
+        if returnDict:
+        posDict: OrderedDict with positions of each atom
+        if not returnDict:
+        names: List of the labels of each atom
+        coords: numpy array of the coordinates of each atom (same order as names)
     """
-    posDict = OrderedDict()
-    shiftDict = get_shifts(iso)
-    for key in iso.positions.keys():
-        equation = iso.positions[key][0]
-        k = key[:-1]+'d'+key[-1]
-        pParams = re.findall(k,equation)
-        for pParam in pParams:
-            equation = equation.replace(pParam,"shiftDict['"+pParam+"']")
-        posDict[key] = eval(equation)
-        temp = iso.positions[key]
-        iso.positions[key] = (temp[0], posDict[key])
-    return posDict
+    if returnDict:
+        posDict = OrderedDict()
+        shiftDict = get_shifts(iso)
+        for key in iso.positions.keys():
+            equation = iso.positions[key][0]
+            k = key[:-1]+'d'+key[-1]
+            pParams = re.findall(k,equation)
+            for pParam in pParams:
+                equation = equation.replace(pParam,"shiftDict['"+pParam+"']")
+            posDict[key] = eval(equation)
+            temp = iso.positions[key]
+            iso.positions[key] = (temp[0], posDict[key])
+        return posDict
+    else:
+        coords = []
+        names = []
+        for idx, key in enumerate(iso.positions):
+            coords.append(iso.positions[key][1])
+            if idx % 3 == 0:
+                names.append(key[:-2])
+        coords = np.array(coords)
+        coords = np.reshape(coords, (len(names), 3))
+        return names, coords
 
 def update_positions(strucObj, iso):
     """Update fractional positions of diffpy structure object from mode amps.
@@ -105,22 +128,7 @@ def update_positions(strucObj, iso):
         string = 'strucObj['+str(idx//3)+'].'+ XYZ +' = posDict[key]'
         exec(string)
 
-def update_positions_pyobjcryst(crystObj, iso):
-    """Update fractional positions of pyobjcryst Crystal from mode amps.
-
-    Args:
-        crystObj: the pyobjcryst Crystal instance to be updated.
-        iso: instance of IsoInfo class.
-
-    Returns: Nothing. Just updates the strucObj.
-    """
-    posDict = get_positions(iso)
-    for key in posDict.keys():
-        k = key[:-2]
-        XYZ = key[-1].capitalize()
-        eval('crystObj.GetScatterer(k).Set'+ XYZ +'(posDict[key])')
-
-def set_amps(iso,ampArray):
+def set_amps(iso, ampArray):
     """Set the symmetry mode amplitudes to desired values.
 
     Args:
@@ -161,12 +169,16 @@ def build_struc(iso):
     a, b, c, alpha, beta, gamma = iso.abcdegabg 
     lat = dps.Lattice(a, b, c, alpha, beta, gamma)
     
+    sgobj = sg.GetSpaceGroup(iso.spacegroupnum) # space group object
+    
     # create the atoms
     atoms = []
     for key in list(iso.positions.keys())[::3]: # grab every third entry because x, y, z are listed for each atom
         letters = re.findall(r"[a-zA-Z]",key)
         elem = ''.join(letters[:-1])
-        atoms.append(dps.Atom(atype=elem, xyz=get_xyz(key[:-2],iso), anisotropy=True))
+        expanded_pos = su.expandPosition(sgobj, get_xyz(key[:-2],iso))[0]
+        for pos in expanded_pos:
+            atoms.append(dps.Atom(atype=elem, xyz=pos, anisotropy=True))
 
     struc = dps.Structure(atoms=atoms)
     struc.lattice = lat
