@@ -1,4 +1,4 @@
-## isotools
+## isopytools
 
 Make ISODISTORT output compatible with diffpy.srfit.
 
@@ -18,7 +18,7 @@ Clone or download this repository on your local machine. Navigate to the downloa
     >>> python setup.py install
 
 ## Documentation
-See https://frandsengroup.github.io/isotools/.
+See https://frandsengroup.github.io/isopytools/.
 
 ## Contributors
 

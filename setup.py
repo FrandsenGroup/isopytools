@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 ##############################################################################
 #
-# pydistort         by Frandsen Group
-#                     Benjamin A. Frandsen benfrandsen@byu.edu
+# isopytools           by Frandsen Group
+#                      Benjamin A. Frandsen benfrandsen@byu.edu
 #                     (c) 2022 Benjamin Allen Frandsen
 #                      All rights reserved
 #
@@ -15,8 +15,8 @@
 
 # Installation script for pydistort
 
-"""isotools - Tools for adapting ISODISTORT output to DiffPy fits.
-Packages:   isotools
+"""isopytools - Tools for adapting ISODISTORT output to DiffPy fits.
+Packages:   isopytools
 """
 
 import os
@@ -24,11 +24,11 @@ from setuptools import setup, find_packages
 
 # define distribution
 setup_args = dict(
-        name = "isotools",
+        name = "isopytools",
         version = '0.1',
         namespace_packages = [],
         packages = find_packages(),
-        test_suite = 'isotools.tests',
+        test_suite = 'isopytools.tests',
         include_package_data = True,
         zip_safe = False,
         author = 'Benjamin A. Frandsen group',
@@ -37,7 +37,7 @@ setup_args = dict(
         maintainer_email = 'benfrandsen@byu.edu',
         description = "Tools for working with ISODISTORT output for DiffPy fits.",
         license = 'BSD-3-clause',
-        url = "https://github.com/FrandsenGroup/isotools",
+        url = "https://github.com/FrandsenGroup/isopytools",
         keywords = "",
         classifiers = [
             # List of possible values at

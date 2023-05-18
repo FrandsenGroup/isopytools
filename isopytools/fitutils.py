@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 ##############################################################################
 #
-# isotools            by Frandsen Group
+# isopytools            by Frandsen Group
 #                     Benjamin A. Frandsen benfrandsen@byu.edu
 #                     (c) 2022 Benjamin Allen Frandsen
 #                     All rights reserved
@@ -20,7 +20,7 @@ from diffpy.srfit.fitbase.parameterset import ParameterSet
 from collections import OrderedDict
 import diffpy.structure.symmetryutilities as su
 import diffpy.structure.spacegroups as sg
-from isotools.iso2diffpy import get_positions
+from isopytools.iso2diffpy import get_positions
 import numpy as np
 import sympy as sp
 

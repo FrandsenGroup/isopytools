@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 ##############################################################################
 #
-# isotools            by Frandsen Group
+# isopytools            by Frandsen Group
 #                     Benjamin A. Frandsen benfrandsen@byu.edu
 #                     (c) 2022 Benjamin Allen Frandsen
 #                     All rights reserved
