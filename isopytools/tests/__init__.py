@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 ##############################################################################
 #
-# isotools            by Frandsen Group
+# isopytools            by Frandsen Group
 #                     Benjamin A. Frandsen benfrandsen@byu.edu
 #                     (c) 2022 Benjamin Allen Frandsen
 #                     All rights reserved
@@ -13,7 +13,7 @@
 #
 ##############################################################################
 
-"""Unit tests for isotools.
+"""Unit tests for isopytools.
 """
 
 
@@ -26,12 +26,12 @@ del logging
 
 
 def testsuite():
-    '''Build a unit tests suite for the isotools package.
+    '''Build a unit tests suite for the isopytools package.
     Return a unittest.TestSuite object.
     '''
     import unittest
     modulenames = '''
-        isotools.tests.tests
+        isopytools.tests.tests
     '''.split()
     suite = unittest.TestSuite()
     loader = unittest.defaultTestLoader
@@ -43,7 +43,7 @@ def testsuite():
 
 
 def test():
-    '''Execute all unit tests for the isotools package.
+    '''Execute all unit tests for the isopytools package.
     Return a unittest TestResult object.
     '''
     import unittest

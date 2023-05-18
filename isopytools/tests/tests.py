@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 ##############################################################################
 #
-# isotools            by Frandsen Group
+# isopytools            by Frandsen Group
 #                     Benjamin A. Frandsen benfrandsen@byu.edu
 #                     (c) 2022 Benjamin Allen Frandsen
 #                     All rights reserved
@@ -13,12 +13,12 @@
 #
 ##############################################################################
 
-"""Unit tests basic pydistort functionalities.
+"""Unit tests for basic isopytools functionalities.
 """
 
 
 import unittest
-import isotools
+import isopytools
 import os
 import sys
 
@@ -32,15 +32,15 @@ class testIso(unittest.TestCase):
     def test_iso(self):
         path = os.path.dirname(os.path.abspath(__file__))
         fname = find('MnTe_iso.txt', path)
-        iso = isotools.iso2diffpy.IsoInfo(fname)
+        iso = isopytools.iso2diffpy.IsoInfo(fname)
         teststr = iso.deltas['Te_1_dx'][0]
         self.assertEqual(teststr, '+  0.09736*a2 -  0.16864*a3 +  0.09736*a5 -  0.16864*a6')
         
     def test_struc(self):
         path = os.path.dirname(os.path.abspath(__file__))
         fname = find('MnTe_iso.txt', path)
-        iso = isotools.iso2diffpy.IsoInfo(fname)
-        struc = isotools.iso2diffpy.build_struc(iso)
+        iso = isopytools.iso2diffpy.IsoInfo(fname)
+        struc = isopytools.iso2diffpy.build_struc(iso)
         self.assertEqual(struc[0].element, 'Te')
 
 # End of class
