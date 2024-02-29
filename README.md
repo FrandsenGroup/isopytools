@@ -13,9 +13,14 @@ Recommended: DiffPy-CMI library (https://www.diffpy.org/products/diffpycmi/index
 
 ## Installation
 
-Clone or download this repository on your local machine. Navigate to the downloaded repository and run the following command (making sure that you are in the environment you created in Step 1).
+After installing the dependencies, run the command:
+
+    >>> pip install isopytools
+
+Alternatively, you can install from source by cloning or downloading the github repository https://github.com/FrandsenGroup/isopytools on your local machine, navigating to the downloaded repository, and running the following command:
 
     >>> python setup.py install
+
 
 ## Documentation
 See https://frandsengroup.github.io/isopytools/.

@@ -1,0 +1,27 @@
+[project]
+name = "isopytools"
+version = "0.0.2"
+authors = [
+  { name="Benjamin Frandsen", email="benfrandsen@byu.edu" },
+]
+readme = "README.md"
+requires-python = ">=3.7"
+description = "Tools for working with ISODISTORT output for DiffPy fits"
+license = {file = "LICENSE.txt"}
+classifiers = [
+        'Development Status :: 5 - Production/Stable',
+        'Environment :: Console',
+        'Intended Audience :: Developers',
+        'Intended Audience :: Science/Research',
+        'License :: OSI Approved :: BSD License',
+        'Operating System :: MacOS :: MacOS X',
+        'Operating System :: Microsoft :: Windows',
+        'Operating System :: POSIX',
+        'Operating System :: Unix',
+        'Programming Language :: Python :: 3.7',
+        'Topic :: Scientific/Engineering :: Physics',
+]
+
+[project.urls]
+Homepage = "https://github.com/FrandsenGroup/isopytools"
+Issues = "https://github.com/FrandsenGroup/isopytools/issues"

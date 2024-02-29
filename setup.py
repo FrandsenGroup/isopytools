@@ -25,20 +25,20 @@ from setuptools import setup, find_packages
 # define distribution
 setup_args = dict(
         name = "isopytools",
-        version = '0.1',
-        namespace_packages = [],
+        version = '0.0.2',
+        #namespace_packages = [],
         packages = find_packages(),
-        test_suite = 'isopytools.tests',
-        include_package_data = True,
-        zip_safe = False,
-        author = 'Benjamin A. Frandsen group',
-        author_email = 'benfrandsen@byu.edu',
-        maintainer = 'Benjamin Frandsen',
-        maintainer_email = 'benfrandsen@byu.edu',
-        description = "Tools for working with ISODISTORT output for DiffPy fits.",
+        #test_suite = 'isopytools.tests',
+        #include_package_data = True,
+        #zip_safe = False,
+        #author = 'Benjamin A. Frandsen group',
+        #author_email = 'benfrandsen@byu.edu',
+        #maintainer = 'Benjamin Frandsen',
+        #maintainer_email = 'benfrandsen@byu.edu',
+        description = "Tools for working with ISODISTORT output for DiffPy fits",
         license = 'BSD-3-clause',
-        url = "https://github.com/FrandsenGroup/isopytools",
-        keywords = "",
+        #url = "https://github.com/FrandsenGroup/isopytools",
+        #keywords = "",
         classifiers = [
             # List of possible values at
             # http://pypi.python.org/pypi?:action=list_classifiers
